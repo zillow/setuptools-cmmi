@@ -19,20 +19,16 @@ Distribution(dict(
     setup_requires=['versioner'],
     dependency_links=['http://pypispandex.in.zillow.net/simple/versioner/']))
 
-from zillow.tools import versioner
-
 # figure out what the install will need
 install_requires = ["setuptools >=0.5"]
 
 setup(
     name="setuptools-cmmi",
-    version=versioner.get_version(),
+    version="0.0.1",
     author="padev",
     author_email="padev@zillowgroup.com",
     description="Egg to handle the CMMI custom task in setuptools.",
-    license="(C) Zillow, Inc. 2012-",
-    keywords="zillow",
-    url="https://stash.atl.zillow.net/projects/LIBS/repos/egg.${eggname}/browse",
+    url="https://github.com/zillow/setuptools-cmmi",
     packages=find_packages(),
     long_description=read('README.md'),
     classifiers=[
@@ -41,5 +37,10 @@ setup(
     ],
     install_requires=install_requires,
     tests_require=install_requires,
-    test_suite="nose.collector"
+    test_suite="nose.collector",
+    entry_points={
+        'distutils.setup_keywords': [
+            'cmmi=setuptools_cmmi:cmmi_entry_point'
+        ]
+    }
     )

@@ -1,0 +1,25 @@
+Metadata-Version: 1.1
+Name: setuptools-cmmi
+Version: 0.0.1
+Summary: Egg to handle the CMMI custom task in setuptools.
+Home-page: https://github.com/zillow/setuptools-cmmi
+Author: padev
+Author-email: padev@zillowgroup.com
+License: UNKNOWN
+Description: # setuptools-cmmi
+        
+        owner: padev@zillowgroup.com
+        
+        Egg to handle the CMMI custom task in setuptools.
+        
+        ## Development
+        
+            ./uranium
+        
+        ## Running Tests
+        
+            ./uranium test
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Utilities

@@ -1,0 +1,14 @@
+GENERATED_VERSION
+MANIFEST.in
+README.md
+setup.py
+setuptools_cmmi/__init__.py
+setuptools_cmmi/cmmi.py
+setuptools_cmmi.egg-info/PKG-INFO
+setuptools_cmmi.egg-info/SOURCES.txt
+setuptools_cmmi.egg-info/dependency_links.txt
+setuptools_cmmi.egg-info/entry_points.txt
+setuptools_cmmi.egg-info/requires.txt
+setuptools_cmmi.egg-info/top_level.txt
+setuptools_cmmi/tests/__init__.py
+setuptools_cmmi/tests/test_egg.py
