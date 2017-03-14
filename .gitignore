@@ -51,6 +51,7 @@ conf.cfg
 *.7z
 *.dmg
 *.gz
+!freetds*.tar.gz
 *.iso
 *.jar
 *.rar
