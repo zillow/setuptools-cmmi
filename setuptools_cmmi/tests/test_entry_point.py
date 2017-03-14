@@ -10,7 +10,8 @@ def test_cmmi_entry_point():
     attr = 'cmmi'
     values = {
           'url': 'http://repo.in.zillow.net/content/groups/public/com/zillow/zpr/freetds/1.00.15/freetds-1.00.15.tar.gz',
-          'config_options': '--prefix=$project_dir/lib/usr'
+          'config_options': '--prefix=$project_dir/lib/usr',
+          'destination_dir': '$project_dir/lib/usr'
       }
     setuptools_cmmi.cmmi_entry_point(distribution, attr, values)
 

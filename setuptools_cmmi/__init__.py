@@ -18,6 +18,7 @@ KEY_AUTOGEN = "autogen"
 KEY_PATCH = "patch"
 KEY_PATCH_OPTIONS = "patch_options"
 KEY_TEMP_WORK_DIR = "temp_work_dir"
+KEY_DEST_DIR = "destination_dir"
 
 VAR_PROJECT_DIR = "project_dir"
 VAR_DATETIME = "datetime"
@@ -39,6 +40,13 @@ def _substitute_vars(org_values, vars):
     return values
 
 
+def _check_var(values, key):
+    val = values.get(key)
+    if not val:
+        raise DistutilsSetupError("Required '{}' parameter not specified for cmmi."
+                                  .format(key))
+    return val
+
 
 def cmmi_entry_point(dist, attr, org_values):
     logging.basicConfig()
@@ -49,14 +57,13 @@ def cmmi_entry_point(dist, attr, org_values):
     values = _substitute_vars(org_values, vars)
 
     # Make sure all the needed vars are defined
+    url = _check_var(values, KEY_URL)
+    dest_dir = _check_var(values, KEY_DEST_DIR)
+
     download_dir = values.get(KEY_DOWNLOAD_DIR, vars[VAR_PROJECT_DIR] + "/temp_download")
     temp_work_dir = values.get(KEY_TEMP_WORK_DIR, vars[VAR_PROJECT_DIR] + "/temp_work_cmmi")
-    url = values.get(KEY_URL, None)
     config_options = values.get(KEY_CONFIG_OPTIONS, '')
     autogen = values.get(KEY_AUTOGEN, '')
-
-    if not url:
-        raise DistutilsSetupError("Required 'url' parameter not specified for cmmi.")
 
     LOG.debug("dist: {}".format(dist))
     LOG.debug("attr: {}".format(attr))
@@ -65,5 +72,6 @@ def cmmi_entry_point(dist, attr, org_values):
 
     # TODO: Download file here somewhere and return the full path to the file
 
-    process_cmmi(temp_work_dir, config_options, autogen)
+    # TODO: Fix this.  This is broken when running through the entry point test right now.
+    # process_cmmi(dest_dir, temp_work_dir, config_options, autogen)
 
