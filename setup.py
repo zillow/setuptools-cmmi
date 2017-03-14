@@ -20,7 +20,7 @@ Distribution(dict(
     dependency_links=['http://pypispandex.in.zillow.net/simple/versioner/']))
 
 # figure out what the install will need
-install_requires = ["setuptools >=0.5"]
+install_requires = ["setuptools >=0.5", "mock"]
 
 setup(
     name="setuptools-cmmi",

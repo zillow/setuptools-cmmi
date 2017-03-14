@@ -1,24 +1,19 @@
-import unittest
+"""Unit tests for the main entry point."""
+import setuptools_cmmi
 
-# write functional, low overhead tests like this
-def test_has_tests():
-    pass
-    # assert_true (False, "There aren't any tests.")
+from mock import patch, Mock
 
-def test_import_setuptools_cmmi():
-    import setuptools_cmmi
 
-# write tests that require member variables like this
-class Test_setuptools_cmmi(unittest.TestCase):
+def test_cmmi_entry_point():
+    """Test entry point."""
+    distribution = Mock()
+    attr = 'cmmi'
+    values = {
+          'url': 'http://repo.in.zillow.net/content/groups/public/com/zillow/zpr/freetds/1.00.15/freetds-1.00.15.tar.gz',
+          'config-options': [
+             '--prefix=${project-dir}/lib/usr'
+          ]
+      }
+    setuptools_cmmi.cmmi_entry_point(distribution, attr, values)
 
-    def setUp (self):
-        pass
-
-    def tearDown (self):
-        pass
-
-    def test_has_tests (self):
-        pass
-        # assert_true (False, "There aren't any tests.")
-        # or, if you prefer using the member function
-        #self.assertTrue (False, "There aren't any tests.")
+    # TODO: Add actual test stuff here
