@@ -72,6 +72,5 @@ def cmmi_entry_point(dist, attr, org_values):
 
     # TODO: Download file here somewhere and return the full path to the file
 
-    # TODO: Fix this.  This is broken when running through the entry point test right now.
-    # process_cmmi(dest_dir, temp_work_dir, config_options, autogen)
+    process_cmmi(dest_dir, temp_work_dir, config_options, autogen)
 
