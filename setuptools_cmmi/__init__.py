@@ -7,7 +7,10 @@ from string import Template
 from datetime import datetime
 from time import strftime
 
+import sys
+from setuptools.archive_util import unpack_archive
 from setuptools_cmmi.process_cmmi import process_cmmi
+from setuptools_cmmi.rebuild_package import rebuild_package
 
 LOG = logging.getLogger(__name__)
 
@@ -19,6 +22,7 @@ KEY_PATCH = "patch"
 KEY_PATCH_OPTIONS = "patch_options"
 KEY_TEMP_WORK_DIR = "temp_work_dir"
 KEY_DEST_DIR = "destination_dir"
+KEY_REBUILD_PACKAGES = "rebuild_packages"
 
 VAR_PROJECT_DIR = "project_dir"
 VAR_DATETIME = "datetime"
@@ -34,13 +38,21 @@ def _load_vars():
 
 
 def _substitute_vars(org_values, vars):
-    # There has got to be a more pythonic way of doing this...but this will work for now.
-    values = {key: Template(val).safe_substitute(vars)
-              for (key, val) in org_values.iteritems()}
+    """Substitute variable templates in the values passed in."""
+    values = {}
+    for key, val in org_values.iteritems():
+        if isinstance(val, list):
+            new_lst = []
+            for lst_val in val:
+                new_lst.append(Template(lst_val).safe_substitute(vars))
+            values[key] = new_lst
+        else:
+            values[key] = Template(val).safe_substitute(vars)
     return values
 
 
 def _check_var(values, key):
+    """Check for required values and throw exception if not passed."""
     val = values.get(key)
     if not val:
         raise DistutilsSetupError("Required '{}' parameter not specified for cmmi."
@@ -49,8 +61,10 @@ def _check_var(values, key):
 
 
 def cmmi_entry_point(dist, attr, org_values):
-    logging.basicConfig()
+    """Main entry point for this extension."""
+    LOG.addHandler(logging.StreamHandler(sys.stdout))
     LOG.setLevel(logging.DEBUG)
+    print("THIS IS A TEST!!!!!!")
 
     vars = _load_vars()
 
@@ -71,6 +85,18 @@ def cmmi_entry_point(dist, attr, org_values):
     LOG.debug("config-options: {}".format(values[KEY_CONFIG_OPTIONS]))
 
     # TODO: Download file here somewhere and return the full path to the file
+    # FOR NOW: Just unzip the freetds zip file under tests.  Yes, this is awful, but it
+    # should be temporary.
+    # REMOVE THIS
+    # >>>>>>>>>>
+    src_dist = "/Users/johnp/zillow-github/setuptools-cmmi/setuptools_cmmi/tests/data/freetds-1.00.15.tar.gz"
+    unpack_archive(src_dist, temp_work_dir)
+    # <<<<<<<<<<
 
     process_cmmi(dest_dir, temp_work_dir, config_options, autogen)
 
+    # See if we need to rebuild any packages
+    rebuild_packages = values.get(KEY_REBUILD_PACKAGES, [])
+
+    for package in rebuild_packages:
+        rebuild_package(package, dest_dir)

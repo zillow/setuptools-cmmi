@@ -7,7 +7,6 @@ from setuptools.archive_util import unpack_archive
 
 def setup_cmmi_process_test():
     """Setup for the CMMI processing."""
-    src_dist = os.getcwd() + "/setuptools_cmmi/tests/data/freetds-1.00.15.tar.gz"
     rand_suffix = str(uuid.uuid1())
 
     temp_root_test_dest = os.getcwd() + "/setuptools_cmmi/tests/data/temp_test_dest-" \
