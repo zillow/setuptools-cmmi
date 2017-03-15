@@ -11,5 +11,6 @@ setuptools_cmmi.egg-info/entry_points.txt
 setuptools_cmmi.egg-info/requires.txt
 setuptools_cmmi.egg-info/top_level.txt
 setuptools_cmmi/tests/__init__.py
+setuptools_cmmi/tests/cmmi_utils.py
 setuptools_cmmi/tests/test_entry_point.py
 setuptools_cmmi/tests/test_process_cmmi.py

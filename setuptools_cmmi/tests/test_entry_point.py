@@ -3,8 +3,8 @@ import setuptools_cmmi
 
 from mock import patch, Mock
 
-
-def test_cmmi_entry_point():
+@patch("setuptools_cmmi.process_cmmi")
+def test_cmmi_entry_point(mock_process_cmmi):
     """Test entry point."""
     distribution = Mock()
     attr = 'cmmi'
@@ -16,3 +16,5 @@ def test_cmmi_entry_point():
     setuptools_cmmi.cmmi_entry_point(distribution, attr, values)
 
     # TODO: Add actual test stuff here
+    mock_process_cmmi.assert_called_once()
+
