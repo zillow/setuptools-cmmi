@@ -6,9 +6,7 @@ from distutils.errors import DistutilsSetupError
 from string import Template
 
 from datetime import datetime
-from time import strftime
 
-import sys
 from setuptools.archive_util import unpack_archive
 from setuptools_cmmi.process_cmmi import process_cmmi
 from setuptools_cmmi.rebuild_package import rebuild_package

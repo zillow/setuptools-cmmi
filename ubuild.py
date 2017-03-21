@@ -46,11 +46,3 @@ def test(build):
         "--cov", build.config.get("module"),
         "--cov-report", "term-missing"
     ] + build.options.args)
-
-#current_build.include("https://stash.atl.zillow.net/projects/LIBS/repos/egg.zillow-uranium/browse/zillow_base.py?raw=true",
-#                      cache=True)
-#from zillow_uranium import setup_egg
-#setup_egg(current_build)
-# how do I customize? see:
-# https://stash.atl.zillow.net/projects/LIBS/repos/egg.zillow-uranium/browse
-# http://uranium.readthedocs.io/en/latest/
