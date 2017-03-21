@@ -71,7 +71,6 @@ def cmmi_entry_point(dist, attr, org_values):
     url = _check_var(values, KEY_URL)
     dest_dir = _check_var(values, KEY_DEST_DIR)
 
-    download_dir = values.get(KEY_DOWNLOAD_DIR, vars[VAR_PROJECT_DIR] + "/temp_download")
     temp_work_dir = values.get(KEY_TEMP_WORK_DIR, vars[VAR_PROJECT_DIR] + "/temp_work_cmmi")
     config_options = values.get(KEY_CONFIG_OPTIONS, '')
     autogen = values.get(KEY_AUTOGEN, '')
@@ -81,9 +80,7 @@ def cmmi_entry_point(dist, attr, org_values):
     LOG.debug("url: {}".format(url))
     LOG.debug("config-options: {}".format(values[KEY_CONFIG_OPTIONS]))
 
-    LOG.info("Starting download for {0}".format(url))
-    filehandle, _ = urllib.urlretrieve(url)
-    unpack_archive(filehandle, temp_work_dir)
+    download_unpack_file(url, temp_work_dir)
 
     process_cmmi(dest_dir, temp_work_dir, config_options, autogen)
 
@@ -92,3 +89,10 @@ def cmmi_entry_point(dist, attr, org_values):
 
     for package in rebuild_packages:
         rebuild_package(package, dest_dir)
+
+
+def download_unpack_file(url, temp_work_dir):
+    """Download and unpack the specified file."""
+    LOG.info("Starting download for {0}".format(url))
+    filehandle, _ = urllib.urlretrieve(url)
+    unpack_archive(filehandle, temp_work_dir)
