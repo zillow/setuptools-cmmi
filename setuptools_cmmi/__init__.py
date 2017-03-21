@@ -62,9 +62,7 @@ def _check_var(values, key):
 
 def cmmi_entry_point(dist, attr, org_values):
     """Main entry point for this extension."""
-    LOG.addHandler(logging.StreamHandler(sys.stdout))
     LOG.setLevel(logging.DEBUG)
-    print("THIS IS A TEST!!!!!!")
 
     vars = _load_vars()
 
