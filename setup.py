@@ -32,8 +32,11 @@ setup(
     packages=find_packages(),
     long_description=read('README.md'),
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Topic :: Utilities",
+        "Development Status :: 3 - Alpha",
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Build Tools',
+        'License :: OSI Approved :: Apache Software License',
+        'Classifier: Programming Language :: Python :: 2.7'
     ],
     install_requires=install_requires,
     tests_require=install_requires,
