@@ -1,5 +1,6 @@
 MANIFEST.in
 README.md
+setup.cfg
 setup.py
 setuptools_cmmi/__init__.py
 setuptools_cmmi/process_cmmi.py
