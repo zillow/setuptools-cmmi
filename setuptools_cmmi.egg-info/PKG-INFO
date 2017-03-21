@@ -21,5 +21,8 @@ Description: # setuptools-cmmi
             ./uranium test
         
 Platform: UNKNOWN
-Classifier: Development Status :: 5 - Production/Stable
-Classifier: Topic :: Utilities
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Classifier: Programming Language :: Python :: 2.7
