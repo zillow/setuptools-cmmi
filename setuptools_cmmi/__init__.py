@@ -1,5 +1,6 @@
 import logging
 import os
+import urllib
 from distutils.errors import DistutilsSetupError
 
 from string import Template
@@ -82,14 +83,9 @@ def cmmi_entry_point(dist, attr, org_values):
     LOG.debug("url: {}".format(url))
     LOG.debug("config-options: {}".format(values[KEY_CONFIG_OPTIONS]))
 
-    # TODO: Download file here somewhere and return the full path to the file
-    # FOR NOW: Just unzip the freetds zip file under tests.  Yes, this is awful, but it
-    # should be temporary.
-    # REMOVE THIS
-    # >>>>>>>>>>
-    src_dist = "/Users/johnp/zillow-github/setuptools-cmmi/setuptools_cmmi/tests/data/freetds-1.00.15.tar.gz"
-    unpack_archive(src_dist, temp_work_dir)
-    # <<<<<<<<<<
+    LOG.info("Starting download for {0}".format(url))
+    filehandle, _ = urllib.urlretrieve(url)
+    unpack_archive(filehandle, temp_work_dir)
 
     process_cmmi(dest_dir, temp_work_dir, config_options, autogen)
 
