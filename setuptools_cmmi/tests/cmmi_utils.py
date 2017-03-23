@@ -22,6 +22,8 @@ def setup_cmmi_process_test():
 
 def cleanup_cmmi_process_test(temp_work_dir, temp_root_test_dest):
     """Cleanup for the CMMI processing."""
+
+    # This should already have gotten cleaned up, but just in case...
     if os.path.exists(temp_work_dir):
         shutil.rmtree(temp_work_dir)
     if os.path.exists(temp_root_test_dest):

@@ -15,8 +15,7 @@ def test_cmmi_entry_point(mock_process_cmmi, mock_download_unpack_file):
     values = {
           'url': TEST_URL,
           'config_options': '--prefix=$project_dir/lib/usr',
-          'destination_dir': '$project_dir/lib/usr',
-          'rebuild_packages': ['ctds']
+          'destination_dir': '$project_dir/lib/usr'
       }
     setuptools_cmmi.cmmi_entry_point(distribution, attr, values)
 
