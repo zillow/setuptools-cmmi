@@ -12,6 +12,7 @@ from setuptools.archive_util import unpack_archive
 from setuptools_cmmi.process_cmmi import process_cmmi
 
 LOG = logging.getLogger(__name__)
+logging.basicConfig(filename='setuptools-cmmi.log',level=logging.DEBUG)
 
 KEY_DOWNLOAD_DIR = "download_dir"
 KEY_CONFIG_OPTIONS = "config_options"
@@ -61,8 +62,6 @@ def _check_var(values, key):
 
 def cmmi_entry_point(dist, attr, org_values):
     """Main entry point for this extension."""
-    LOG.setLevel(logging.DEBUG)
-
     vars = _load_vars()
 
     values = _substitute_vars(org_values, vars)
@@ -80,7 +79,8 @@ def cmmi_entry_point(dist, attr, org_values):
         LOG.debug("dist: {}".format(dist))
         LOG.debug("attr: {}".format(attr))
         LOG.debug("url: {}".format(url))
-        LOG.debug("config-options: {}".format(values[KEY_CONFIG_OPTIONS]))
+        LOG.debug("config_options: {}".format(values[KEY_CONFIG_OPTIONS]))
+        LOG.debug("destination_dir: {}".format(values[KEY_DEST_DIR]))
 
         download_unpack_file(url, temp_work_dir)
 
@@ -89,8 +89,8 @@ def cmmi_entry_point(dist, attr, org_values):
 
     finally:
         if os.path.exists(temp_work_dir):
-            shutil.rmtree(temp_work_dir)
-
+            #shutil.rmtree(temp_work_dir)
+            pass
 def download_unpack_file(url, temp_work_dir):
     """Download and unpack the specified file."""
     LOG.info("Starting download for {0}".format(url))

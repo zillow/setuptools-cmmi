@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: setuptools-cmmi
-Version: 0.0.1
+Version: 0.0.2
 Summary: Egg to handle the CMMI custom task in setuptools.
 Home-page: https://github.com/zillow/setuptools-cmmi
 Author: padev
