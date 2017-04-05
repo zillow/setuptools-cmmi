@@ -1,3 +1,0 @@
-[distutils.setup_keywords]
-cmmi = setuptools_cmmi:cmmi_entry_point
-

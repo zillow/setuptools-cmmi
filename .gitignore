@@ -25,6 +25,7 @@ ${module}.egg-info/
 .extends-cache
 GENERATED_VERSION
 versioner-*
+*.egg-info
 
 # Zillow specialize #
 #####################
