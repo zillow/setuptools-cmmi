@@ -89,8 +89,10 @@ def cmmi_entry_point(dist, attr, org_values):
 
     finally:
         if os.path.exists(temp_work_dir):
-            #shutil.rmtree(temp_work_dir)
+            shutil.rmtree(temp_work_dir)
             pass
+
+
 def download_unpack_file(url, temp_work_dir):
     """Download and unpack the specified file."""
     LOG.info("Starting download for {0}".format(url))
