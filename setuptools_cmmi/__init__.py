@@ -1,6 +1,7 @@
 import logging
 import os
-import urllib
+import sys
+
 from distutils.errors import DistutilsSetupError
 
 from string import Template
@@ -10,6 +11,11 @@ from datetime import datetime
 import shutil
 from setuptools.archive_util import unpack_archive
 from setuptools_cmmi.process_cmmi import process_cmmi
+
+if sys.version_info[0] < 3:
+    import urllib as req
+else:
+    import urllib.request as req
 
 LOG = logging.getLogger(__name__)
 logging.basicConfig(filename='setuptools-cmmi.log',level=logging.DEBUG)
@@ -96,5 +102,5 @@ def cmmi_entry_point(dist, attr, org_values):
 def download_unpack_file(url, temp_work_dir):
     """Download and unpack the specified file."""
     LOG.info("Starting download for {0}".format(url))
-    filehandle, _ = urllib.urlretrieve(url)
+    filehandle, _ = req.urlretrieve(url)
     unpack_archive(filehandle, temp_work_dir)
