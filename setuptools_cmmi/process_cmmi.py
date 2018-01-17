@@ -35,7 +35,10 @@ def _run(root_path, exec_name, description, args):
     if args:
             exec_path = exec_path + " " + args
     LOG.info("Running {}".format(exec_path))
-    os.system(exec_path)
+    rc = os.system(exec_path)
+    if rc != 0:
+        raise DistutilsSetupError("{0} exited with return code: {1}."
+                                  .format(exec_path, rc))
 
 
 def process_cmmi(dest_dir, temp_source_dir, config_options, autogen):
