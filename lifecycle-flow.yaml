@@ -1,7 +1,0 @@
-source:
-  config:
-    type: 'python-egg'
-    artifact_uri: egg://setuptools-cmmi
-  build-job-config:
-    default:
-      node_label: debian-wheezy-python

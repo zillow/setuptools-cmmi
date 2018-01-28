@@ -3,7 +3,7 @@
 # * download and set up a virtualenv
 # * install uranium
 # * run uranium
-URANIUM_STANDALONE_URL= "https://stash.atl.zillow.net/projects/CONFIG/repos/shared-python/browse/uranium/uranium_standalone?&raw"
+URANIUM_STANDALONE_URL= "https://raw.githubusercontent.com/toumorokoshi/uranium/master/uranium/scripts/uranium_standalone"
 
 try:
     from urllib2 import urlopen as urlopen
