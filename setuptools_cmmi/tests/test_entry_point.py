@@ -20,6 +20,13 @@ TEST_URL = 'http://repo.in.zillow.net/content/groups/public/com/zillow/zpr/freet
         'config_options': '--prefix=$project_dir/lib/usr',
         'config_name': 'overridden_config',
         'destination_dir': '$project_dir/lib/usr'
+    },
+    {
+        'url': TEST_URL,
+        'config_options': '--prefix=$project_dir/lib/usr',
+        'config_name': 'overridden_config',
+        'makefile_name': 'overridden_make',
+        'destination_dir': '$project_dir/lib/usr'
     }
 ])
 def test_cmmi_entry_point(mock_process_cmmi, mock_download_unpack_file, values):
@@ -30,4 +37,4 @@ def test_cmmi_entry_point(mock_process_cmmi, mock_download_unpack_file, values):
 
     # TODO: Add actual test stuff here
     mock_download_unpack_file.assert_called_once()
-    mock_process_cmmi.assert_called_with(ANY, ANY, ANY, ANY, values.get('config_name'))
+    mock_process_cmmi.assert_called_with(ANY, ANY, ANY, ANY, values.get('config_name'), values.get('makefile_name'))
