@@ -41,7 +41,7 @@ def _run(root_path, exec_name, description, args):
                                   .format(exec_path, rc))
 
 
-def process_cmmi(dest_dir, temp_source_dir, config_options, autogen, config_name=None, make_name=None):
+def process_cmmi(dest_dir, temp_source_dir, config_options, autogen, config_name=None, makefile_name=None):
     """Run through the CMMI process with the given parameters."""
     LOG.debug("Making dir {}".format(dest_dir))
     if not os.path.exists(dest_dir):
@@ -56,8 +56,8 @@ def process_cmmi(dest_dir, temp_source_dir, config_options, autogen, config_name
         if autogen:
             _run(src_root, autogen, "Autogen")
         _run(src_root, config_name or "configure", "Configure", config_options)
-        _run(src_root, make_name or "make", "make", None)
-        _run(src_root, make_name or "make", "make install", "install")
+        _run(src_root, makefile_name or "make", "make", None)
+        _run(src_root, makefile_name or "make", "make install", "install")
 
 
     finally:
