@@ -23,6 +23,7 @@ logging.basicConfig(filename='setuptools-cmmi.log',level=logging.DEBUG)
 KEY_DOWNLOAD_DIR = "download_dir"
 KEY_CONFIG_OPTIONS = "config_options"
 KEY_CONFIG_NAME = "config_name"
+KEY_MAKEFILE_NAME = "makefile_name"
 KEY_URL = "url"
 KEY_AUTOGEN = "autogen"
 KEY_PATCH = "patch"
@@ -81,6 +82,7 @@ def cmmi_entry_point(dist, attr, org_values):
 
     try:
         config_name = values.get(KEY_CONFIG_NAME)
+        makefile_name = values.get(KEY_MAKEFILE_NAME)
         config_options = values.get(KEY_CONFIG_OPTIONS, '')
         autogen = values.get(KEY_AUTOGEN, '')
 
@@ -88,12 +90,13 @@ def cmmi_entry_point(dist, attr, org_values):
         LOG.debug("attr: {}".format(attr))
         LOG.debug("url: {}".format(url))
         LOG.debug("config_name: {}".format(config_name))
+        LOG.debug("makefile_name: {}".format(makefile_name))
         LOG.debug("config_options: {}".format(values[KEY_CONFIG_OPTIONS]))
         LOG.debug("destination_dir: {}".format(values[KEY_DEST_DIR]))
 
         download_unpack_file(url, temp_work_dir)
 
-        process_cmmi(dest_dir, temp_work_dir, config_options, autogen, config_name)
+        process_cmmi(dest_dir, temp_work_dir, config_options, autogen, config_name, makefile_name)
 
 
     finally:
